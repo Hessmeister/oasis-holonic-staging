@@ -1080,76 +1080,148 @@ nav.nav-collapsed.nav-dark .nav-hamburger span {
    START BUILDING (Section 08)
    ═══════════════════════════════════════ */
 
-.build-prompt-area {
+.build-intro {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.85);
+  max-width: 600px;
   margin-bottom: 2.5rem;
 }
 
-.build-terminal {
-  background: rgba(0,0,0,0.35);
-  border-radius: 8px;
-  overflow: hidden;
-  max-width: 680px;
-  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', Menlo, Consolas, monospace;
-  border: 1px solid rgba(255,255,255,0.1);
+/* ── Chat input ── */
+.build-chat {
+  margin-bottom: 2rem;
+  max-width: 640px;
 }
 
-.build-terminal-bar {
+.build-input-wrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  padding: 0.5rem 0.5rem 0.5rem 1.2rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.build-input-wrap:focus-within {
+  border-color: rgba(255,255,255,0.5);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.08);
+}
+
+.build-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: none;
+  min-height: 1.5em;
+  max-height: 6em;
+  overflow-y: auto;
+}
+
+.build-input::placeholder {
+  color: rgba(255,255,255,0.4);
+}
+
+.build-submit {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 0.6rem 1rem;
-  background: rgba(0,0,0,0.25);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.15s;
 }
 
-.build-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.2);
+.build-submit:hover {
+  background: rgba(255,255,255,0.3);
 }
 
-.build-dot:first-child { background: rgba(255,100,80,0.6); }
-.build-dot:nth-child(2) { background: rgba(255,200,80,0.5); }
-.build-dot:nth-child(3) { background: rgba(80,200,100,0.5); }
-
-.build-terminal-title {
-  font-size: 0.65rem;
-  color: rgba(255,255,255,0.35);
-  margin-left: 0.5rem;
-  letter-spacing: 0.02em;
+.build-submit:active {
+  transform: scale(0.93);
 }
 
-.build-terminal-body {
-  padding: 1.25rem 1.5rem;
+/* ── Confirmation ── */
+.build-confirm {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1.2rem;
+  background: rgba(0,0,0,0.2);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.9);
+  font-size: 0.88rem;
+  animation: buildConfirmIn 0.4s ease;
 }
 
-.build-line {
-  font-size: 0.8rem;
-  line-height: 2;
-  color: rgba(255,255,255,0.85);
-  white-space: nowrap;
-  overflow-x: auto;
+.build-confirm[hidden] { display: none; }
+
+.build-confirm-icon {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.7);
 }
 
-.build-prompt {
-  color: rgba(255,255,255,0.45);
-  margin-right: 0.6rem;
-  user-select: none;
+@keyframes buildConfirmIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.build-output {
+/* ── Suggestion chips ── */
+.build-suggestions {
+  margin-bottom: 1rem;
+}
+
+.build-suggestions-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: rgba(255,255,255,0.5);
-  font-style: italic;
+  margin-bottom: 0.75rem;
 }
 
-.build-subtitle {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.8);
-  line-height: 1.6;
-  max-width: 520px;
+.build-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
+.build-chip {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.85);
+  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.build-chip:hover {
+  background: rgba(0,0,0,0.35);
+  border-color: rgba(255,255,255,0.4);
+}
+
+.build-chip:active {
+  transform: scale(0.97);
+}
+
+/* ── Path cards ── */
 .build-card {
   position: relative;
 }
@@ -1169,14 +1241,6 @@ nav.nav-collapsed.nav-dark .nav-hamburger span {
 
 .build-link:hover {
   border-color: #fff;
-}
-
-/* Override orange section code styling for terminal */
-.section--orange .build-terminal code {
-  background: none;
-  padding: 0;
-  color: rgba(255,255,255,0.7);
-  font-size: 0.8rem;
 }
 
 
@@ -1279,6 +1343,7 @@ nav.nav-collapsed.nav-dark .nav-hamburger span {
   .prov-grid { grid-template-columns: 1fr; gap: 0.5rem; }
   .prov-grid > .vdiv { display: none; }
 
-  .build-terminal { max-width: 100%; }
-  .build-line { font-size: 0.7rem; white-space: pre-wrap; word-break: break-all; }
+  .build-chat { max-width: 100%; }
+  .build-chips { gap: 0.4rem; }
+  .build-chip { font-size: 0.72rem; padding: 0.35rem 0.8rem; }
 }

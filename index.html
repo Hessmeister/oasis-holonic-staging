@@ -387,49 +387,58 @@
 
     <div class="section-head">
       <span class="sh-num">08</span>
-      <h2>Start<br><em>building</em></h2>
+      <h2>What would you<br><em>build?</em></h2>
     </div>
 
-    <div class="build-prompt-area">
-      <div class="build-terminal">
-        <div class="build-terminal-bar">
-          <span class="build-dot"></span>
-          <span class="build-dot"></span>
-          <span class="build-dot"></span>
-          <span class="build-terminal-title">terminal</span>
-        </div>
-        <div class="build-terminal-body">
-          <p class="build-line"><span class="build-prompt">$</span> dotnet new -i NextGenSoftware.OASIS.STAR.CLI.Templates</p>
-          <p class="build-line"><span class="build-prompt">$</span> dotnet new oasis-moon -n MyFirstOAPP</p>
-          <p class="build-line"><span class="build-prompt">$</span> cd MyFirstOAPP &amp;&amp; dotnet run</p>
-          <p class="build-line build-output">&#10003; OASIS API booted &mdash; default provider: MongoDB</p>
-          <p class="build-line build-output">&#10003; Moon &ldquo;MyFirstOAPP&rdquo; live at localhost:5000</p>
-        </div>
+    <p class="build-intro">Every holon starts as an idea. Tell us what you&rsquo;d build on OASIS &mdash; a game, a DAO tool, a cross-chain bridge, anything. We collect every idea and help the best ones get started.</p>
+
+    <!-- Chat input -->
+    <div class="build-chat">
+      <div class="build-input-wrap">
+        <textarea id="buildInput" class="build-input" placeholder="I want to build..." rows="1"></textarea>
+        <button id="buildSubmit" class="build-submit" aria-label="Submit idea">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+      <div id="buildConfirm" class="build-confirm" hidden>
+        <span class="build-confirm-icon">&#10003;</span>
+        <span>Idea submitted! We&rsquo;ll be in touch.</span>
       </div>
     </div>
 
-    <p class="build-subtitle">Three commands to a running holonic app. Pick a path to go deeper:</p>
+    <!-- Suggestion chips -->
+    <div class="build-suggestions">
+      <span class="build-suggestions-label">Or start from a spark:</span>
+      <div class="build-chips">
+        <button class="build-chip">A decentralised identity wallet</button>
+        <button class="build-chip">A cross-chain NFT marketplace</button>
+        <button class="build-chip">A karma-based reputation system</button>
+        <button class="build-chip">A provider for IPFS + Filecoin</button>
+        <button class="build-chip">A holonic game with quests</button>
+      </div>
+    </div>
 
-    <div class="col3 stagger" style="margin-top:2.5rem;">
+    <!-- Quick start paths -->
+    <div class="col3 stagger" style="margin-top:3.5rem;">
       <div class="col3-item build-card">
-        <div class="col3-num">→</div>
+        <div class="col3-num">01</div>
         <h3 class="col3-title">Clone &amp; Explore</h3>
-        <p class="col3-desc">Fork the repo, spin up the REST API locally, and explore the holon CRUD endpoints. Best if you learn by reading code.</p>
-        <a href="https://github.com/NextGenSoftwareUK/OASIS" target="_blank" class="build-link">View on GitHub &rarr;</a>
+        <p class="col3-desc">Fork the repo, spin up the REST API, and explore the holon CRUD endpoints.</p>
+        <a href="https://github.com/NextGenSoftwareUK/OASIS" target="_blank" class="build-link">GitHub &rarr;</a>
       </div>
       <div class="vdiv"></div>
       <div class="col3-item build-card">
-        <div class="col3-num">→</div>
+        <div class="col3-num">02</div>
         <h3 class="col3-title">Build a Moon</h3>
-        <p class="col3-desc">Use the STAR CLI to scaffold a Moon &mdash; the smallest holonic app. Add zomes, wire a provider, and deploy. Best first project.</p>
-        <a href="https://github.com/NextGenSoftwareUK/OASIS/wiki" target="_blank" class="build-link">Read the guide &rarr;</a>
+        <p class="col3-desc">Use the STAR CLI to scaffold the smallest holonic app. Best first project.</p>
+        <a href="https://github.com/NextGenSoftwareUK/OASIS/wiki" target="_blank" class="build-link">Guide &rarr;</a>
       </div>
       <div class="vdiv"></div>
       <div class="col3-item build-card">
-        <div class="col3-num">→</div>
+        <div class="col3-num">03</div>
         <h3 class="col3-title">Write a Provider</h3>
-        <p class="col3-desc">Implement <code>IOASISStorageProvider</code> for a new backend &mdash; a new database, chain, or protocol. Advanced, high-impact contribution.</p>
-        <a href="https://github.com/NextGenSoftwareUK/OASIS/wiki" target="_blank" class="build-link">Provider docs &rarr;</a>
+        <p class="col3-desc">Implement <code>IOASISStorageProvider</code> for a new backend. High-impact.</p>
+        <a href="https://github.com/NextGenSoftwareUK/OASIS/wiki" target="_blank" class="build-link">Docs &rarr;</a>
       </div>
     </div>
 

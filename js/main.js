@@ -71,10 +71,66 @@ function initNav() {
   });
 }
 
+// ── Build section: idea submission ──
+function initBuildChat() {
+  const input = document.getElementById('buildInput');
+  const submit = document.getElementById('buildSubmit');
+  const confirm = document.getElementById('buildConfirm');
+  const chips = document.querySelectorAll('.build-chip');
+
+  if (!input || !submit) return;
+
+  // Auto-resize textarea
+  input.addEventListener('input', () => {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 120) + 'px';
+  });
+
+  // Submit handler
+  function submitIdea() {
+    const text = input.value.trim();
+    if (!text) return;
+
+    // Store in localStorage (swap for API call later)
+    const ideas = JSON.parse(localStorage.getItem('oasis-ideas') || '[]');
+    ideas.push({ text, timestamp: new Date().toISOString() });
+    localStorage.setItem('oasis-ideas', JSON.stringify(ideas));
+
+    // Show confirmation
+    input.value = '';
+    input.style.height = 'auto';
+    confirm.hidden = false;
+
+    // Hide after a few seconds
+    setTimeout(() => { confirm.hidden = true; }, 4000);
+  }
+
+  submit.addEventListener('click', submitIdea);
+
+  // Submit on Enter (Shift+Enter for newline)
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      submitIdea();
+    }
+  });
+
+  // Chips fill the input
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      input.value = chip.textContent;
+      input.focus();
+      input.style.height = 'auto';
+      input.style.height = Math.min(input.scrollHeight, 120) + 'px';
+    });
+  });
+}
+
 // ── Boot ──
 document.addEventListener('DOMContentLoaded', () => {
   initReveals();
   initNav();
+  initBuildChat();
 });
 
 export { observeCanvas, prefersReducedMotion };
