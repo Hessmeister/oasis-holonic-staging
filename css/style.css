@@ -11,11 +11,11 @@
   /* ── Strict 8-color palette ── */
   --sage: #CCD9D8;
   --orange: #FF3700;
-  --teal-mid: #20464B;
+  --teal-mid: #1A1A1A;
   --navy: #003346;
   --cream: #FFFEDF;
   --peach: #FEDAB3;
-  --charcoal: #325448;
+  --charcoal: #2A2A2A;
 
   /* ── Semantic mappings (all from the 8 above) ── */
   --bg: #FFFEDF;
@@ -556,7 +556,7 @@ nav {
 
 
 /* ═══════════════════════════════════════
-   CHARCOAL-TEAL sections (#20464B)
+   DARK GRAY sections (#1A1A1A)
    Avatar, secondary dark
    ═══════════════════════════════════════ */
 .section--charcoal::before {
