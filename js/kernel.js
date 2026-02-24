@@ -1,7 +1,8 @@
 /* ═══════════════════════════════════════
    kernel.js — OASIS Kernel Architecture
    Concentric constraint → freedom diagram
-   Light-on-dark (teal bg), orbiting dots
+   Deep aquamarine bg, orbiting dots
+   Words light up when dots pass by
    ═══════════════════════════════════════ */
 
 import { observeCanvas, prefersReducedMotion } from './main.js';
@@ -26,6 +27,10 @@ class KernelDiagram {
       { ring: 3, angle: 2.7,        speed: -0.0003,  size: 1.0 },
       { ring: 3, angle: 5.0,        speed: -0.0003,  size: 1.3 },
     ];
+
+    // Track label positions for collision detection
+    // Each entry: { x, y, text, litAt: 0 }
+    this.labels = [];
 
     this.resize();
     window.addEventListener('resize', () => this.resize());
@@ -59,6 +64,59 @@ class KernelDiagram {
     requestAnimationFrame(step);
   }
 
+  /* ── Collision detection: is any dot near this label? ── */
+  checkDotProximity(lx, ly, t, rings) {
+    const cx = this.w / 2;
+    const cy = this.h * 0.46;
+    const hitRadius = this.w * 0.06; // proximity threshold
+
+    for (const dot of this.dots) {
+      const ring = rings[dot.ring];
+      if (!ring) continue;
+      const breathAmp = 0.008;
+      const breathScale = 1 + Math.sin((t + ring.breathOff) * 0.0005) * breathAmp;
+      const r = ring.r * breathScale;
+      const angle = dot.angle + t * dot.speed;
+      const dx = cx + Math.cos(angle) * r;
+      const dy = cy + Math.sin(angle) * r;
+
+      const dist = Math.sqrt((dx - lx) ** 2 + (dy - ly) ** 2);
+      if (dist < hitRadius) return true;
+    }
+    return false;
+  }
+
+  /* ── Track label lit state ──
+     Returns an interpolated brightness 0..1 with smooth fade-out */
+  getLabelLit(key, isHit, t) {
+    if (!this._litState) this._litState = {};
+    if (!this._litState[key]) this._litState[key] = { litAt: 0, val: 0 };
+
+    const state = this._litState[key];
+    const litDuration = 800; // ms to stay lit
+
+    if (isHit) {
+      state.litAt = t;
+    }
+
+    const elapsed = t - state.litAt;
+    if (elapsed < litDuration) {
+      // Smooth: ramp up fast, hold, then fade out
+      const progress = elapsed / litDuration;
+      if (progress < 0.1) {
+        state.val = progress / 0.1; // fast ramp up
+      } else if (progress < 0.6) {
+        state.val = 1.0; // hold bright
+      } else {
+        state.val = 1.0 - ((progress - 0.6) / 0.4); // smooth fade out
+      }
+    } else {
+      state.val = 0;
+    }
+
+    return state.val;
+  }
+
   draw(t) {
     const { ctx, w, h } = this;
     const cx = w / 2;
@@ -69,7 +127,7 @@ class KernelDiagram {
 
     ctx.clearRect(0, 0, w, h);
 
-    // Ring definitions — light strokes for dark teal bg
+    // Ring definitions — light strokes for dark bg
     const rings = [
       { r: S * 0.16, dash: [0, 0],  lw: 0,   dir:  1, opacity: 0,    breathOff: 0 },
       { r: S * 0.38, dash: [0, 0],  lw: 1.8, dir:  1, opacity: 0.40, breathOff: 0 },
@@ -126,7 +184,7 @@ class KernelDiagram {
       });
     }
 
-    // ── Labels (light on dark) ──
+    // ── Labels (with dot-proximity light-up effect) ──
 
     // Invariants — cardinal
     const e1 = this.ringP(rp, 1);
@@ -143,11 +201,36 @@ class KernelDiagram {
         const d = r1 + 16;
         const lx = cx + Math.cos(a) * d;
         const ly = cy + Math.sin(a) * d;
-        ctx.fillStyle = `rgba(255,255,255,${0.88 * lp})`;
-        ctx.font = `500 ${this.fs(0.019)}px Inter, sans-serif`;
+
+        // Check if any dot is near this label
+        const isHit = loop && this.checkDotProximity(lx, ly, t, rings);
+        const lit = loop ? this.getLabelLit('inv_' + text, isHit, t) : 0;
+
+        // Interpolate: base → lit (brighter, bolder)
+        const baseAlpha = 0.88;
+        const litAlpha = 1.0;
+        const alpha = (baseAlpha + lit * (litAlpha - baseAlpha)) * lp;
+        const baseWeight = 500;
+        const litWeight = 700;
+        const weight = Math.round(baseWeight + lit * (litWeight - baseWeight));
+        const scale = 1 + lit * 0.08;
+
+        ctx.save();
+        ctx.translate(lx + this.xOff(a), ly);
+        ctx.scale(scale, scale);
+
+        // Glow effect when lit
+        if (lit > 0.05) {
+          ctx.shadowColor = `rgba(255,255,255,${0.6 * lit})`;
+          ctx.shadowBlur = 12 * lit;
+        }
+
+        ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+        ctx.font = `${weight} ${this.fs(0.019)}px Inter, sans-serif`;
         ctx.textAlign = this.alignFor(a);
         ctx.textBaseline = a === -Math.PI / 2 ? 'bottom' : a === Math.PI / 2 ? 'top' : 'middle';
-        ctx.fillText(text, lx + this.xOff(a), ly);
+        ctx.fillText(text, 0, 0);
+        ctx.restore();
       });
     }
 
@@ -166,11 +249,31 @@ class KernelDiagram {
         const d = r2 + 14;
         const lx = cx + Math.cos(a) * d;
         const ly = cy + Math.sin(a) * d;
-        ctx.fillStyle = `rgba(254,218,179,${0.6 * lp})`;
-        ctx.font = `400 ${this.fs(0.016)}px Inter, sans-serif`;
+
+        const isHit = loop && this.checkDotProximity(lx, ly, t, rings);
+        const lit = loop ? this.getLabelLit('rule_' + text, isHit, t) : 0;
+
+        const baseAlpha = 0.6;
+        const litAlpha = 1.0;
+        const alpha = (baseAlpha + lit * (litAlpha - baseAlpha)) * lp;
+        const weight = lit > 0.3 ? 600 : 400;
+        const scale = 1 + lit * 0.06;
+
+        ctx.save();
+        ctx.translate(lx + this.xOff(a), ly);
+        ctx.scale(scale, scale);
+
+        if (lit > 0.05) {
+          ctx.shadowColor = `rgba(255,255,255,${0.5 * lit})`;
+          ctx.shadowBlur = 10 * lit;
+        }
+
+        ctx.fillStyle = `rgba(254,218,179,${alpha})`;
+        ctx.font = `${weight} ${this.fs(0.016)}px Inter, sans-serif`;
         ctx.textAlign = this.alignFor(a);
         ctx.textBaseline = 'middle';
-        ctx.fillText(text, lx + this.xOff(a), ly);
+        ctx.fillText(text, 0, 0);
+        ctx.restore();
       });
     }
 
@@ -184,11 +287,31 @@ class KernelDiagram {
         const angle = Math.PI * 0.15 + (Math.PI * 0.70 / (items.length - 1)) * i;
         const lx = cx + Math.cos(angle) * (r3 + 14);
         const ly = cy + Math.sin(angle) * (r3 + 14);
-        ctx.fillStyle = `rgba(254,218,179,${0.5 * lp})`;
-        ctx.font = `400 ${this.fs(0.014)}px Inter, sans-serif`;
+
+        const isHit = loop && this.checkDotProximity(lx, ly, t, rings);
+        const lit = loop ? this.getLabelLit('iface_' + label, isHit, t) : 0;
+
+        const baseAlpha = 0.5;
+        const litAlpha = 1.0;
+        const alpha = (baseAlpha + lit * (litAlpha - baseAlpha)) * lp;
+        const weight = lit > 0.3 ? 600 : 400;
+        const scale = 1 + lit * 0.06;
+
+        ctx.save();
+        ctx.translate(lx, ly);
+        ctx.scale(scale, scale);
+
+        if (lit > 0.05) {
+          ctx.shadowColor = `rgba(255,255,255,${0.5 * lit})`;
+          ctx.shadowBlur = 10 * lit;
+        }
+
+        ctx.fillStyle = `rgba(254,218,179,${alpha})`;
+        ctx.font = `${weight} ${this.fs(0.014)}px Inter, sans-serif`;
         ctx.textAlign = angle < Math.PI * 0.4 ? 'left' : angle > Math.PI * 0.6 ? 'right' : 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(label, lx, ly);
+        ctx.fillText(label, 0, 0);
+        ctx.restore();
       });
     }
 
@@ -204,17 +327,35 @@ class KernelDiagram {
         const na = a + drift;
         const nx = cx + Math.cos(na) * r4;
         const ny = cy + Math.sin(na) * r4;
+
+        const isHit = loop && this.checkDotProximity(nx, ny, t, rings);
+        const lit = loop ? this.getLabelLit('env_' + label, isHit, t) : 0;
+
         const fontSize = this.fs(0.014);
-        ctx.font = `400 ${fontSize}px Inter, sans-serif`;
+        const weight = lit > 0.3 ? 600 : 400;
+        ctx.font = `${weight} ${fontSize}px Inter, sans-serif`;
         const tw = ctx.measureText(label).width;
         const pw = tw + 14;
         const ph = fontSize + 8;
+
+        // Pill background brightens when lit
+        const pillAlpha = 0.85 + lit * 0.15;
+        const strokeAlpha = 0.35 + lit * 0.45;
         this.drawPill(ctx, nx - pw / 2, ny - ph / 2, pw, ph, ph / 2,
-          `rgba(0,51,70,${0.85 * lp})`, `rgba(254,218,179,${0.35 * lp})`);
-        ctx.fillStyle = `rgba(255,254,223,${0.8 * lp})`;
+          `rgba(0,51,70,${pillAlpha * lp})`, `rgba(254,218,179,${strokeAlpha * lp})`);
+
+        // Text brightens and glows when lit
+        const textAlpha = 0.8 + lit * 0.2;
+        if (lit > 0.05) {
+          ctx.shadowColor = `rgba(255,255,255,${0.4 * lit})`;
+          ctx.shadowBlur = 8 * lit;
+        }
+        ctx.fillStyle = `rgba(255,254,223,${textAlpha * lp})`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(label, nx, ny + 0.5);
+        ctx.shadowColor = 'transparent';
+        ctx.shadowBlur = 0;
       });
     }
 
