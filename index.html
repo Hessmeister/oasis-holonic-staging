@@ -138,51 +138,42 @@
 
 
   <!-- 03 — THE HOLARCHY -->
-  <section id="holarchy" class="section section--cream reveal">
+  <section id="holarchy" class="section section--dark reveal">
 
     <div class="section-head">
       <span class="sh-num">03</span>
       <h2>Holons inside holons,<br>all the <em>way up</em></h2>
     </div>
 
-    <div class="holarchy-grid">
-      <div class="h-stack stagger">
-        <div class="h-row">
-          <span class="h-idx">I</span>
-          <div>
-            <div class="h-name">Stars</div>
-            <div class="h-sub">Top-level platforms &mdash; OAPPs with their own ecosystems of planets and moons</div>
-          </div>
-        </div>
-        <div class="h-row">
-          <span class="h-idx">II</span>
-          <div>
-            <div class="h-name">Planets</div>
-            <div class="h-sub">Mid-scale modules or major app components within a star</div>
-          </div>
-        </div>
-        <div class="h-row">
-          <span class="h-idx">III</span>
-          <div>
-            <div class="h-name">Moons</div>
-            <div class="h-sub">Small self-contained apps &mdash; where every OAPP starts</div>
-          </div>
-        </div>
-        <div class="h-row">
-          <span class="h-idx">IV</span>
-          <div>
-            <div class="h-name">Zomes &rarr; Holons</div>
-            <div class="h-sub">Atomic data units: profiles, quests, NFTs, items</div>
-          </div>
-        </div>
-        <p class="h-note">STAR ODK celestial mapping: Omniverse &rarr; Multiverse &rarr; Universe &rarr; Galaxy &rarr; Solar System &rarr; Star &rarr; Planet &rarr; Moon &rarr; Zome &rarr; Holon</p>
+    <!-- Full-width orbit animation -->
+    <div class="orbit-hero">
+      <canvas id="orbitCanvas" class="anim-canvas"></canvas>
+    </div>
+
+    <!-- Tiers grid below -->
+    <div class="col4 stagger" style="margin-top:3rem;">
+      <div class="col4-item">
+        <div class="col4-num">I</div>
+        <h3 class="col4-title">Stars</h3>
+        <p class="col4-desc">Top-level platforms &mdash; OAPPs with their own ecosystems of planets and moons.</p>
       </div>
-
       <div class="vdiv"></div>
-
-      <!-- Orbit animation -->
-      <div class="orbit-container">
-        <canvas id="orbitCanvas" class="anim-canvas"></canvas>
+      <div class="col4-item">
+        <div class="col4-num">II</div>
+        <h3 class="col4-title">Planets</h3>
+        <p class="col4-desc">Mid-scale modules or major app components within a star.</p>
+      </div>
+      <div class="vdiv"></div>
+      <div class="col4-item">
+        <div class="col4-num">III</div>
+        <h3 class="col4-title">Moons</h3>
+        <p class="col4-desc">Small self-contained apps &mdash; where every OAPP starts.</p>
+      </div>
+      <div class="vdiv"></div>
+      <div class="col4-item">
+        <div class="col4-num">IV</div>
+        <h3 class="col4-title">Zomes &rarr; Holons</h3>
+        <p class="col4-desc">Atomic data units: profiles, quests, NFTs, items.</p>
       </div>
     </div>
 

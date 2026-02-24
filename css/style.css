@@ -916,67 +916,14 @@ nav.nav-collapsed.nav-dark .nav-hamburger span {
 
 
 /* ═══════════════════════════════════════
-   HOLARCHY (Section 03)
+   HOLARCHY (Section 03) — orbit hero
    ═══════════════════════════════════════ */
 
-.holarchy-grid {
-  display: grid;
-  grid-template-columns: 1fr 1px 1fr;
-  gap: 3rem;
-}
-
-.h-stack {
-  display: flex;
-  flex-direction: column;
-}
-
-.h-row {
-  display: grid;
-  grid-template-columns: 2.5rem 1fr;
-  gap: 1rem;
-  padding: 1.25rem 0;
-  border-bottom: 1px solid var(--gray-lighter);
-  transition: background 0.4s;
-}
-
-.h-row:first-child { border-top: 1px solid var(--gray-lighter); }
-.h-row:hover { background: rgba(255,55,0,0.06); }
-
-.h-row .h-idx {
-  font-size: 0.65rem;
-  color: var(--orange);
-  padding-top: 0.25rem;
-  font-weight: 600;
-}
-
-.h-row .h-name {
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.2rem;
-}
-
-.h-row .h-sub {
-  font-size: 0.78rem;
-  color: var(--gray);
-  line-height: 1.5;
-}
-
-.h-note {
-  font-size: 0.7rem;
-  color: var(--gray-light);
-  line-height: 1.6;
-  margin-top: 1.5rem;
-  letter-spacing: 0.01em;
-}
-
-/* Orbit canvas aside */
-.orbit-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 320px;
+.orbit-hero {
+  width: 100%;
+  max-width: 680px;
   aspect-ratio: 1;
+  margin: 0 auto 1rem;
 }
 
 
@@ -1166,8 +1113,7 @@ nav.nav-collapsed.nav-dark .nav-hamburger span {
 
   .col4 { grid-template-columns: 1fr 1px 1fr; }
 
-  .holarchy-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .holarchy-grid > .vdiv { display: none; }
+  .orbit-hero { max-width: 400px; }
 
   .footer { grid-template-columns: 1fr; gap: 1.5rem 0; }
   .footer > .vdiv { display: none; }
