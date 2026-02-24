@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OASIS — Holonic Architecture</title>
+  <meta name="description" content="OASIS is a unified data layer across blockchains, databases, and decentralized networks. All data is stored as holons — self-contained entities that nest, replicate, and move between providers without data loss.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">OASIS</div>
+  <div class="nav-links">
+    <a href="#holon">Holon</a>
+    <a href="#kernel">Kernel</a>
+    <a href="#holarchy">Holarchy</a>
+    <a href="#providers">Providers</a>
+    <a href="#star">STAR ODK</a>
+    <a href="https://github.com/NextGenSoftwareUK/OASIS" target="_blank" class="nav-btn">Source</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="hero-top">
+      <div class="hero-logotype">OASIS</div>
+      <div class="vdiv"></div>
+      <div class="hero-title-side">Holonic Architecture</div>
+    </div>
+
+    <div class="hero-mesh">
+      <div class="mesh-container">
+        <canvas id="meshCanvas"></canvas>
+        <div class="mesh-overlay">
+          <p class="mo-tagline">A unified data layer across every blockchain, database, and network. Built on one idea: the holon.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-bottom">
+      <div class="hb-col">
+        <span class="hb-label">Project</span>
+        <span class="hb-value">OASIS &mdash; Open Application<br>Integrated Standard</span>
+      </div>
+      <div class="vdiv"></div>
+      <div class="hb-col">
+        <span class="hb-label">By</span>
+        <span class="hb-value">NextGen Software</span>
+      </div>
+      <div class="vdiv"></div>
+      <div class="hb-col">
+        <span class="hb-label">Stack</span>
+        <span class="hb-value">.NET / C# &mdash; REST API</span>
+      </div>
+      <div class="vdiv"></div>
+      <div class="hb-col">
+        <span class="hb-label">License</span>
+        <span class="hb-value">Open Source &mdash; MIT</span>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- 01 — THE HOLON -->
+  <section id="holon" class="section section--sage reveal">
+
+    <div class="section-head">
+      <span class="sh-num">01</span>
+      <h2>Everything is<br>a <em>holon</em></h2>
+    </div>
+
+    <div class="def-block">
+      <div class="def-left">
+        <div class="def-etymology">
+          <span class="greek">h&oacute;los</span><span class="plus"> + </span><span class="greek">-on</span>
+        </div>
+        <p class="def-origin">Greek: &ldquo;whole&rdquo; + &ldquo;part&rdquo;</p>
+
+        <!-- Rings animation -->
+        <div class="rings-container" style="margin-top:2rem;">
+          <canvas id="ringsCanvas" class="anim-canvas"></canvas>
+        </div>
+      </div>
+      <div class="vdiv"></div>
+      <div class="def-right">
+        <p>A <strong>holon</strong> is both a self-contained entity and a component of a larger system. It is whole on its own. It is also a part.</p>
+        <p>In OASIS, every data entity is a holon: users, applications, quests, NFTs, game objects. Each holon carries a unique GUID, parent-child references, extensible metadata, and provider-agnostic storage keys.</p>
+        <p>This means any holon can be stored on any provider &mdash; and moved between them without data loss. One data structure. Every backend.</p>
+      </div>
+    </div>
+
+    <div class="col3 stagger">
+      <div class="col3-item">
+        <div class="col3-num">01</div>
+        <h3 class="col3-title">Identity</h3>
+        <p class="col3-desc">Every holon has a GUID, version history, audit trail, and change detection. It knows who created it, who modified it, and when.</p>
+      </div>
+      <div class="vdiv"></div>
+      <div class="col3-item">
+        <div class="col3-num">02</div>
+        <h3 class="col3-title">Hierarchy</h3>
+        <p class="col3-desc">Holons nest inside holons. A parent references children; children reference their parent. Infinite depth. One tree.</p>
+      </div>
+      <div class="vdiv"></div>
+      <div class="col3-item">
+        <div class="col3-num">03</div>
+        <h3 class="col3-title">Portability</h3>
+        <p class="col3-desc">Each holon maps its ID to every provider it touches via <code>ProviderUniqueStorageKey</code>. Move between Ethereum, MongoDB, Holochain &mdash; zero data loss.</p>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- 02 — KERNEL ARCHITECTURE -->
+  <section id="kernel" class="section section--dark reveal">
+
+    <div class="section-head">
+      <span class="sh-num">02</span>
+      <h2>The kernel enforces<br><em>invariants</em></h2>
+    </div>
+
+    <div class="kernel-container">
+      <canvas id="kernelCanvas" class="anim-canvas"></canvas>
+    </div>
+
+  </section>
+
+
+  <!-- 03 — THE HOLARCHY -->
+  <section id="holarchy" class="section section--cream reveal">
+
+    <div class="section-head">
+      <span class="sh-num">03</span>
+      <h2>Holons inside holons,<br>all the <em>way up</em></h2>
+    </div>
+
+    <div class="holarchy-grid">
+      <div class="h-stack stagger">
+        <div class="h-row">
+          <span class="h-idx">I</span>
+          <div>
+            <div class="h-name">Stars</div>
+            <div class="h-sub">Top-level platforms &mdash; OAPPs with their own ecosystems of planets and moons</div>
+          </div>
+        </div>
+        <div class="h-row">
+          <span class="h-idx">II</span>
+          <div>
+            <div class="h-name">Planets</div>
+            <div class="h-sub">Mid-scale modules or major app components within a star</div>
+          </div>
+        </div>
+        <div class="h-row">
+          <span class="h-idx">III</span>
+          <div>
+            <div class="h-name">Moons</div>
+            <div class="h-sub">Small self-contained apps &mdash; where every OAPP starts</div>
+          </div>
+        </div>
+        <div class="h-row">
+          <span class="h-idx">IV</span>
+          <div>
+            <div class="h-name">Zomes &rarr; Holons</div>
+            <div class="h-sub">Atomic data units: profiles, quests, NFTs, items</div>
+          </div>
+        </div>
+        <p class="h-note">STAR ODK celestial mapping: Omniverse &rarr; Multiverse &rarr; Universe &rarr; Galaxy &rarr; Solar System &rarr; Star &rarr; Planet &rarr; Moon &rarr; Zome &rarr; Holon</p>
+      </div>
+
+      <div class="vdiv"></div>
+
+      <!-- Orbit animation -->
+      <div class="orbit-container">
+        <canvas id="orbitCanvas" class="anim-canvas"></canvas>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- 04 — PROVIDER ABSTRACTION -->
+  <section id="providers" class="section section--orange reveal">
+
+    <div class="section-head">
+      <span class="sh-num">04</span>
+      <h2>One interface,<br>every <em>provider</em></h2>
+    </div>
+
+    <!-- Flow particle animation -->
+    <div class="flow-container">
+      <canvas id="flowCanvas" class="anim-canvas"></canvas>
+    </div>
+
+    <div class="col3 stagger">
+      <div class="col3-item">
+        <div class="col3-num">04</div>
+        <h3 class="col3-title">One Interface</h3>
+        <p class="col3-desc"><code>IOASISStorageProvider</code> defines CRUD for holons and avatars. Every provider implements it. Your app calls one API regardless of backend.</p>
+      </div>
+      <div class="vdiv"></div>
+      <div class="col3-item">
+        <div class="col3-num">05</div>
+        <h3 class="col3-title">Auto-Failover</h3>
+        <p class="col3-desc">If the active provider goes down, OASIS switches to the next in the failover list. No downtime. No code changes.</p>
+      </div>
+      <div class="vdiv"></div>
+      <div class="col3-item">
+        <div class="col3-num">06</div>
+        <h3 class="col3-title">Auto-Replication</h3>
+        <p class="col3-desc">Write to multiple providers simultaneously. Data lives on Ethereum and MongoDB at the same time. Redundancy by default.</p>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- 05 — STAR ODK -->
+  <section id="star" class="section section--dark reveal">
+
+    <div class="section-head">
+      <span class="sh-num">05</span>
+      <h2>STAR makes apps<br><em>holonic</em></h2>
+    </div>
+
+    <div class="flow-bar stagger">
+      <div class="fb-node">Your App</div>
+      <div class="fb-connector"></div>
+      <div class="fb-node active">STAR CLI</div>
+      <div class="fb-connector"></div>
+      <div class="fb-node active">COSMIC ORM</div>
+      <div class="fb-connector"></div>
+      <div class="fb-node">OASIS API</div>
+      <div class="fb-connector"></div>
+      <div class="fb-node">Any Provider</div>
+    </div>
+
+    <div class="col3 stagger" style="margin-top:2rem;">
+      <div class="col3-item">
+        <div class="col3-num">STAR</div>
+        <h3 class="col3-title">STAR CLI</h3>
+        <p class="col3-desc">Generate, publish, install, and launch holonic OAPPs from the command line. Scaffolds the full OASIS stack.</p>
+      </div>
+      <div class="vdiv"></div>
+      <div class="col3-item">
+        <div class="col3-num">COSMIC</div>
+        <h3 class="col3-title">COSMIC ORM</h3>
+        <p class="col3-desc">Maps your data models to holons automatically. Your classes inherit holon properties &mdash; GUID, versioning, provider keys &mdash; without manual wiring.</p>
+      </div>
+      <div class="vdiv"></div>
+      <div class="col3-item">
+        <div class="col3-num">OAPP</div>
+        <h3 class="col3-title">OAPPs</h3>
+        <p class="col3-desc">OASIS Applications. Holonic apps that run on any provider. Build once, deploy to any blockchain or database the OASIS API supports.</p>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- 06 — PROVIDER GRID -->
+  <section class="section section--sage reveal">
+
+    <div class="section-head">
+      <span class="sh-num">06</span>
+      <h2>One plug,<br>every <em>outlet</em></h2>
+    </div>
+
+    <div class="col4 stagger">
+      <div class="col4-item">
+        <div class="col4-num">07</div>
+        <h3 class="col4-title">No Lock-In</h3>
+        <p class="col4-desc">Store holons on Ethereum today, migrate to Solana tomorrow. Zero code changes.</p>
+      </div>
+      <div class="vdiv"></div>
+      <div class="col4-item">
+        <div class="col4-num">08</div>
+        <h3 class="col4-title">Auto-Failover</h3>
+        <p class="col4-desc">Primary provider down? The next one activates automatically from the configured failover list.</p>
+      </div>
+      <div class="vdiv"></div>
+      <div class="col4-item">
+        <div class="col4-num">09</div>
+        <h3 class="col4-title">Replication</h3>
+        <p class="col4-desc">Holons replicate across multiple providers simultaneously. Data is never trapped in one place.</p>
+      </div>
+      <div class="vdiv"></div>
+      <div class="col4-item">
+        <div class="col4-num">10</div>
+        <h3 class="col4-title">Load Balanced</h3>
+        <p class="col4-desc">Requests distribute across active providers based on performance metrics.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem;" class="stagger">
+      <div class="prov-grid">
+        <span class="prov-label">Blockchain</span>
+        <div class="vdiv"></div>
+        <div class="prov-tags">
+          <span class="prov-tag">Ethereum</span>
+          <span class="prov-tag">Solana</span>
+          <span class="prov-tag">EOS</span>
+          <span class="prov-tag">Telos</span>
+          <span class="prov-tag">Polygon</span>
+          <span class="prov-tag">Arbitrum</span>
+        </div>
+      </div>
+      <div class="prov-grid">
+        <span class="prov-label">Database</span>
+        <div class="vdiv"></div>
+        <div class="prov-tags">
+          <span class="prov-tag">MongoDB</span>
+          <span class="prov-tag">SQLite</span>
+          <span class="prov-tag">Neo4j</span>
+          <span class="prov-tag">Azure Cosmos</span>
+        </div>
+      </div>
+      <div class="prov-grid">
+        <span class="prov-label">Decentral</span>
+        <div class="vdiv"></div>
+        <div class="prov-tags">
+          <span class="prov-tag">Holochain</span>
+          <span class="prov-tag">IPFS</span>
+          <span class="prov-tag">ActivityPub</span>
+          <span class="prov-tag">ThreeFold</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- 07 — AVATAR -->
+  <section class="section section--charcoal reveal">
+
+    <div class="section-head">
+      <span class="sh-num">07</span>
+      <h2>Your Avatar is<br>a <em>holon</em> too</h2>
+    </div>
+
+    <div class="col4 stagger">
+      <div class="col4-item">
+        <div class="col4-num">11</div>
+        <h3 class="col4-title">One Identity</h3>
+        <p class="col4-desc">Your Avatar is a holon. It carries credentials, provider wallets, and JWT tokens across every OAPP.</p>
+      </div>
+      <div class="vdiv"></div>
+      <div class="col4-item">
+        <div class="col4-num">12</div>
+        <h3 class="col4-title">Karma</h3>
+        <p class="col4-desc">Numerical reputation tracked via akashic records. Earned in one app, visible in every other.</p>
+      </div>
+      <div class="vdiv"></div>
+      <div class="col4-item">
+        <div class="col4-num">13</div>
+        <h3 class="col4-title">Inventory</h3>
+        <p class="col4-desc">NFTs, tokens, and items stored in your Avatar holon. Accessible from any provider.</p>
+      </div>
+      <div class="vdiv"></div>
+      <div class="col4-item">
+        <div class="col4-num">14</div>
+        <h3 class="col4-title">Cross-App</h3>
+        <p class="col4-desc">Log in once. Your profile, reputation, and assets follow you across the entire OASIS ecosystem.</p>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <div class="footer reveal">
+    <div class="footer-col">
+      <span class="footer-label">Project</span>
+      <span class="footer-value">OASIS &mdash; Open Application<br>Integrated Standard</span>
+    </div>
+    <div class="vdiv"></div>
+    <div class="footer-col">
+      <span class="footer-label">Source</span>
+      <span class="footer-value"><a href="https://github.com/NextGenSoftwareUK/OASIS" target="_blank">github.com/NextGenSoftwareUK/OASIS</a></span>
+    </div>
+    <div class="vdiv"></div>
+    <div class="footer-col">
+      <span class="footer-label">By</span>
+      <span class="footer-value">NextGen Software<br>2025</span>
+    </div>
+  </div>
+
+  <div style="height:3rem;"></div>
+
+</div><!-- /page -->
+
+<!-- SCRIPTS -->
+<script type="module" src="js/main.js"></script>
+<script type="module" src="js/mesh.js"></script>
+<script type="module" src="js/rings.js"></script>
+<script type="module" src="js/orbit.js"></script>
+<script type="module" src="js/kernel.js"></script>
+<script type="module" src="js/flow.js"></script>
+<script type="module" src="js/ink-text.js"></script>
+
+</body>
+</html>

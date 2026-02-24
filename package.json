@@ -1,0 +1,11 @@
+{
+  "name": "oasis-holonic",
+  "version": "1.0.0",
+  "description": "OASIS Holonic Architecture — Explainer Website",
+  "scripts": {
+    "dev": "npx serve . -p 3000 -s",
+    "start": "npx serve . -p 3000 -s"
+  },
+  "keywords": ["oasis", "holonic", "web4"],
+  "license": "MIT"
+}
