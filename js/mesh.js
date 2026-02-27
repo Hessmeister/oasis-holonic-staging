@@ -774,7 +774,7 @@ class GyroscopeAnimation {
     this._update(t, dt, elapsed);
 
     // Clear
-    ctx.fillStyle = '#0C0C0E';
+    ctx.fillStyle = '#1A1816';
     ctx.fillRect(0, 0, w, h);
 
     // Ring bloom

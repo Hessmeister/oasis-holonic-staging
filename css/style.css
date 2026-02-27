@@ -8,28 +8,28 @@
 
 /* ── TOKENS ── */
 :root {
-  /* ── Strict 8-color palette ── */
-  --sage: #CCD9D8;
-  --orange: #FF3700;
+  /* ── Crouwel-inspired warm gray + orange palette ── */
+  --sage: #C4BCB4;
+  --orange: #FF6B1A;
   --teal-mid: #1A1A1A;
-  --navy: #003346;
-  --cream: #FFFEDF;
-  --peach: #FEDAB3;
+  --navy: #2C2C2C;
+  --cream: #D6D0CA;
+  --peach: #E8C9A8;
   --charcoal: #2A2A2A;
 
-  /* ── Semantic mappings (all from the 8 above) ── */
-  --bg: #FFFEDF;
-  --bg-alt: #FEDAB3;
-  --bg-sage: #CCD9D8;
-  --white: #FFFEDF;
-  --black: #003346;
-  --gray: #003346;
-  --gray-light: #003346;
-  --gray-lighter: #CCD9D8;
-  --gray-bg: #CCD9D8;
-  --border: #CCD9D8;
-  --orange-pale: rgba(255,55,0,0.08);
-  --midnight: #003346;
+  /* ── Semantic mappings ── */
+  --bg: #D6D0CA;
+  --bg-alt: #C4BCB4;
+  --bg-sage: #C4BCB4;
+  --white: #EFECE8;
+  --black: #2C2C2C;
+  --gray: #4A4540;
+  --gray-light: #7A746E;
+  --gray-lighter: #B8B0A8;
+  --gray-bg: #C4BCB4;
+  --border: #B8B0A8;
+  --orange-pale: rgba(255,107,26,0.08);
+  --midnight: #2C2C2C;
 
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
@@ -167,7 +167,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(255,254,223,0.9);
+  background: rgba(214,208,202,0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
@@ -178,7 +178,7 @@ nav {
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: -0.03em;
-  color: var(--navy);
+  color: var(--black);
 }
 
 .nav-links {
@@ -255,7 +255,7 @@ nav.nav-collapsed .nav-links {
   right: 0;
   flex-direction: column;
   align-items: flex-start;
-  background: rgba(255,254,223,0.97);
+  background: rgba(214,208,202,0.97);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 5rem var(--page-pad) 2rem;
@@ -297,8 +297,8 @@ nav.nav-collapsed.nav-open .nav-links {
   flex-direction: column;
   justify-content: space-between;
   padding: 6rem var(--page-pad) 3rem;
-  background: #0C0C0E;
-  color: rgba(255, 254, 223, 0.9);
+  background: #1A1816;
+  color: rgba(239, 236, 232, 0.9);
 }
 
 .hero-top {
@@ -306,7 +306,7 @@ nav.nav-collapsed.nav-open .nav-links {
   align-items: baseline;
   gap: 1.5rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 254, 223, 0.12);
+  border-bottom: 1px solid rgba(239, 236, 232, 0.12);
   opacity: 0;
   animation: heroFadeIn 1s ease 0.3s forwards;
 }
@@ -319,7 +319,7 @@ nav.nav-collapsed.nav-open .nav-links {
   letter-spacing: -0.01em;
   position: relative;
   display: inline-block;
-  color: rgba(255, 254, 223, 0.9);
+  color: rgba(239, 236, 232, 0.9);
 }
 
 .hero-title-side .ink-smoke-text {
@@ -373,7 +373,7 @@ nav.nav-collapsed.nav-open .nav-links {
   left: 2.5rem;
   right: 2.5rem;
   z-index: 2;
-  color: rgba(255, 254, 223, 0.85);
+  color: rgba(239, 236, 232, 0.85);
   pointer-events: none;
 }
 
@@ -390,14 +390,14 @@ nav.nav-collapsed.nav-open .nav-links {
   display: flex;
   gap: 1.5rem;
   align-items: flex-start;
-  border-top: 1px solid rgba(255, 254, 223, 0.12);
+  border-top: 1px solid rgba(239, 236, 232, 0.12);
   padding-top: 2rem;
   opacity: 0;
   animation: heroFadeIn 1s ease 0.9s forwards;
 }
 
 .hero-bottom .vdiv {
-  background: rgba(255, 254, 223, 0.12);
+  background: rgba(239, 236, 232, 0.12);
 }
 
 .hero-bottom .hb-col {
@@ -417,7 +417,7 @@ nav.nav-collapsed.nav-open .nav-links {
 .hb-value {
   font-size: 0.82rem;
   font-weight: 400;
-  color: rgba(255, 254, 223, 0.75);
+  color: rgba(239, 236, 232, 0.65);
   line-height: 1.5;
 }
 
@@ -508,7 +508,7 @@ nav.nav-collapsed.nav-open .nav-links {
    Prominent, high-impact — white text
    ═══════════════════════════════════════ */
 .section--orange::before {
-  background: var(--orange);
+  background: #3A3530;
 }
 
 .section--orange::after {
@@ -516,50 +516,49 @@ nav.nav-collapsed.nav-open .nav-links {
 }
 
 .section--orange {
-  color: #fff;
+  color: rgba(239,236,232,0.92);
   padding: 4rem 0;
 }
 
 .section--orange .sh-num {
-  color: rgba(255,255,255,0.7);
+  color: var(--orange);
 }
 
 .section--orange h2 {
-  color: #fff;
+  color: rgba(239,236,232,0.95);
 }
 
 .section--orange h2 em {
-  color: #fff;
-  opacity: 0.9;
+  color: var(--orange);
 }
 
 .section--orange .col3-num {
-  color: rgba(255,255,255,0.6);
+  color: var(--orange);
 }
 
 .section--orange .col3-title {
-  color: #fff;
+  color: rgba(239,236,232,0.95);
 }
 
 .section--orange .col3-desc {
-  color: rgba(255,255,255,0.85);
+  color: rgba(239,236,232,0.72);
 }
 
 .section--orange .vdiv {
-  background: rgba(255,255,255,0.25);
+  background: rgba(239,236,232,0.15);
 }
 
 .section--orange code {
-  background: rgba(255,255,255,0.2);
-  color: #fff;
+  background: rgba(255,107,26,0.15);
+  color: var(--orange);
 }
 
 .section--orange .section-head h2 em {
-  color: #fff;
+  color: var(--orange);
 }
 
 .reveal.is-visible.section--orange .section-head h2 em .ink-smoke-text {
-  color: #fff;
+  color: var(--orange);
 }
 
 
@@ -568,7 +567,7 @@ nav.nav-collapsed.nav-open .nav-links {
    Kernel, deep content
    ═══════════════════════════════════════ */
 .section--dark::before {
-  background: #1A1A1A;
+  background: #1E1C1A;
 }
 
 .section--dark {
@@ -633,7 +632,7 @@ nav.nav-collapsed.nav-open .nav-links {
 }
 
 .section--dark code {
-  background: rgba(255,55,0,0.18);
+  background: rgba(255,107,26,0.15);
   color: var(--orange);
 }
 
@@ -647,7 +646,7 @@ nav.nav-collapsed.nav-open .nav-links {
    Avatar, secondary dark
    ═══════════════════════════════════════ */
 .section--charcoal::before {
-  background: #3A3A3A;
+  background: #38342F;
 }
 
 .section--charcoal {
@@ -1139,8 +1138,8 @@ nav.nav-collapsed.nav-open .nav-links {
 .commons-tag {
   font-size: 0.78rem;
   font-weight: 500;
-  color: var(--navy);
-  background: rgba(255,255,255,0.6);
+  color: var(--gray);
+  background: rgba(255,255,255,0.35);
   padding: 0.4rem 1.1rem;
   border-radius: 20px;
   letter-spacing: 0.01em;
@@ -1173,7 +1172,7 @@ nav.nav-collapsed.nav-open .nav-links {
   max-width: 600px;
   font-size: 1.05rem;
   line-height: 1.7;
-  color: var(--navy);
+  color: var(--gray);
   margin-bottom: 2.5rem;
 }
 
@@ -1200,25 +1199,25 @@ nav.nav-collapsed.nav-open .nav-links {
 }
 
 .commons-btn--primary {
-  background: var(--navy);
-  color: #fff;
+  background: var(--black);
+  color: var(--white);
 }
 
 .commons-btn--primary:hover {
-  background: #004a5e;
+  background: #1A1816;
   transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(0,51,70,0.25);
+  box-shadow: 0 4px 16px rgba(44,44,44,0.25);
 }
 
 .commons-btn--secondary {
   background: transparent;
-  color: var(--navy);
-  border: 1.5px solid var(--navy);
+  color: var(--black);
+  border: 1.5px solid var(--gray-light);
 }
 
 .commons-btn--secondary:hover {
-  background: var(--navy);
-  color: #fff;
+  background: var(--black);
+  color: var(--white);
   transform: translateY(-1px);
 }
 
@@ -1228,7 +1227,7 @@ nav.nav-collapsed.nav-open .nav-links {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.78rem;
-  color: rgba(0,51,70,0.45);
+  color: var(--gray-light);
   font-weight: 400;
 }
 
@@ -1236,7 +1235,7 @@ nav.nav-collapsed.nav-open .nav-links {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: var(--navy);
+  background: var(--black);
 }
 
 /* ── Keyword block entrance animation ── */
@@ -1280,7 +1279,7 @@ nav.nav-collapsed.nav-open .nav-links {
 .build-intro {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: rgba(255,255,255,0.85);
+  color: rgba(239,236,232,0.78);
   max-width: 600px;
   margin-bottom: 2.5rem;
 }
@@ -1464,7 +1463,7 @@ nav.nav-collapsed.nav-open .nav-links {
   transform: translateX(-50%);
   width: 100vw;
   height: calc(100% + 3rem);
-  background: var(--charcoal);
+  background: #2A2622;
   z-index: -1;
 }
 
@@ -1493,9 +1492,9 @@ nav.nav-collapsed.nav-open .nav-links {
 }
 
 .footer-value a {
-  color: var(--peach);
+  color: var(--orange);
   text-decoration: none;
-  border-bottom: 1px solid rgba(254,218,179,0.3);
+  border-bottom: 1px solid rgba(255,107,26,0.3);
   transition: border-color 0.3s, color 0.3s;
 }
 
